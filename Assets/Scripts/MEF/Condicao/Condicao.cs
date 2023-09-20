@@ -2,13 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Recuperar : MonoBehaviour
+public abstract class Transicao : MonoBehaviour
 {
 
     //propriedades
 
-    //List of Actions
-    //List of Transitions: VidaRecuperada
+    Estado target;
+    Condicao condition
 
     //metodos
 
@@ -24,15 +24,14 @@ public class Recuperar : MonoBehaviour
         
     }
 
-    public void Action(){
-        //procurar pocoes de vida para recuperar a vida
+
+    void setTarget(Estado target){
+        this.target = target;
     }
 
-    public void Exit(){
-        //sem acao
+    condition setCondition(Condicao condition){
+        this.target = target;
     }
 
-    public void Enter(){
-        //sem acao
-    }
+
 }

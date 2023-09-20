@@ -2,13 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Atacar : MonoBehaviour
+public class Recuperar : Estado
 {
 
     //propriedades
 
     //List of Actions
-    //List of Transitions: InimigoFracoProximo, Morto, PoucaVida
+    //List of Transitions: VidaRecuperada
 
     //metodos
 
@@ -25,7 +25,7 @@ public class Atacar : MonoBehaviour
     }
 
     public void Action(){
-        //Atacar o jogador
+        //procurar pocoes de vida para recuperar a vida
     }
 
     public void Exit(){

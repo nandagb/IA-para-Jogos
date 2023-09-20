@@ -2,13 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Busca : MonoBehaviour
+public class Atacar : Estado
 {
 
     //propriedades
 
     //List of Actions
-    //List of Transitions: ComInimigos
+    //List of Transitions: InimigoFracoProximo, Morto, PoucaVida
 
     //metodos
 
@@ -24,15 +24,15 @@ public class Busca : MonoBehaviour
         
     }
 
-    void Action(){
-        //buscar inimigos no mapa
+    public void Action(){
+        //Atacar o jogador
     }
 
-    void Exit(){
+    public void Exit(){
         //sem acao
     }
 
-    void Enter(){
+    public void Enter(){
         //sem acao
     }
 }
