@@ -4,6 +4,14 @@ using UnityEngine;
 
 public class Atacar : MonoBehaviour
 {
+
+    //propriedades
+
+    //List of Actions
+    //List of Transitions: InimigoFracoProximo, Morto, PoucaVida
+
+    //metodos
+
     // Start is called before the first frame update
     void Start()
     {
@@ -14,5 +22,17 @@ public class Atacar : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public void Action(){
+        //Atacar o jogador
+    }
+
+    public void Exit(){
+        //sem acao
+    }
+
+    public void Enter(){
+        //sem acao
     }
 }

@@ -2,8 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SemInimigos : MonoBehaviour
+public class PoucaVida : MonoBehaviour
 {
+
+    //propriedades
+
+    //Target State: Recuperar
+
+    //metodos
+
     // Start is called before the first frame update
     void Start()
     {
@@ -16,15 +23,13 @@ public class SemInimigos : MonoBehaviour
         
     }
 
-    //target state: busca
-
-    public void getAction(){
+    public void Action(){
         //sem acao
     }
 
-    public bool isTriggerd(){
-        //se nao houverem inimigos proximos
+    public bool isTriggered(){
+        //se o npc estiver com vida baixa (limite)
+            //return true;
         return false;
     }
-
 }

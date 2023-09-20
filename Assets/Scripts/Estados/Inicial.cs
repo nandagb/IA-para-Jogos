@@ -4,6 +4,13 @@ using UnityEngine;
 
 public class Inicial : MonoBehaviour
 {
+    //propriedades
+
+    //List of Actions
+    //List of Transitions: SemInimigos, ComInimigos
+
+    //metodos
+
     // Start is called before the first frame update
     void Start()
     {
@@ -16,20 +23,18 @@ public class Inicial : MonoBehaviour
         
     }
 
-    //transicao 1: buscar inimigos caso nao haja nenhum a vista
-    //transicao 2: cacar inimigos a vista caso haja algum
 
-    void getAction(){
+    void Action(){
         //spawnar em um lugar aleatorio
     }
 
 
-    void getExitAction(){
-
+    void Exit(){
+        //sem acao
     }
 
-    void getEntryAction(){
-
+    void Enter(){
+        //sem acao
     }
 
 }

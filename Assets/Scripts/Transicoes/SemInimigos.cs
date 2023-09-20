@@ -2,12 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class Transicao : MonoBehaviour
+public class SemInimigos : MonoBehaviour
 {
-
     //propriedades
 
-    Estado estado;
+    //target state: busca
 
     //metodos
 
@@ -23,17 +22,15 @@ public abstract class Transicao : MonoBehaviour
         
     }
 
-    public abstract void getAction();
 
-    public abstract bool isTriggered();
-
-    public void setTargetState(Estado estado){
-        this.estado = estado;
+    public void Action(){
+        //sem acao
     }
 
-
-    public Estado getTargedState(){
-        return estado;
+    public bool isTriggerd(){
+        //se nao houverem inimigos proximos
+            //return true
+        return false;
     }
 
 }

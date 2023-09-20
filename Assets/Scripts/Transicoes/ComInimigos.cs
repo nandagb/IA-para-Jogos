@@ -4,6 +4,13 @@ using UnityEngine;
 
 public class ComInimigos : MonoBehaviour
 {
+
+    //propriedades
+
+    //target State: 
+
+    //metodos
+
     // Start is called before the first frame update
     void Start()
     {
@@ -14,5 +21,15 @@ public class ComInimigos : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public void Action(){
+        //sem acao
+    }
+
+    public bool isTriggerd(){
+        //se houverem inimigos proximos
+            //return true
+        return false;
     }
 }

@@ -2,10 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class player_script : MonoBehaviour
+public class Player : MonoBehaviour
 {
+    //propriedades
     public float speed = 5f;
+
+    public int life = 10;
     Transform playerTransform;
+
+    //metodos
+
     // Start is called before the first frame update
     void Start()
     {
