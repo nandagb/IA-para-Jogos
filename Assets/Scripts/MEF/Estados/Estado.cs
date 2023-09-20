@@ -8,6 +8,7 @@ public class Estado : Estado
     //propriedades
 
     List<Transicao> transicoes;
+    List<Acao> acoes;
 
     //metodos
 
@@ -18,7 +19,7 @@ public class Estado : Estado
     // Start is called before the first frame update
     void Start()
     {
-            Enter();
+        Enter();
     }
 
     // Update is called once per frame
@@ -39,7 +40,9 @@ public class Estado : Estado
     }
 
     public abstract void Action(){
-
+        for(int i = 0; i< acoes.length; i++){
+            acoes.agir();
+        }
     }
 
     public void setTransicoes(List<Transicao> transicoes){
