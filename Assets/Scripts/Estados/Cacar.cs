@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Cacar : MonoBehaviour
+public class Cacar : Estado
 {
 
     //propriedades
@@ -19,20 +19,24 @@ public class Cacar : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    public override void Update()
     {
+        return;
         
     }
 
-    public void Action(){
+    public override void Action(){
         //perseguir o inimigo próximo
+        return;
     }
 
-    public void Exit(){
+    public override void Exit(){
         //sem acao
+        return;
     }
 
-    public void Enter(){
+    public override void Enter(){
         //sem acao
+        return;
     }
 }

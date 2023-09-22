@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ComInimigos : MonoBehaviour
+public class ComInimigos : Transicao
 {
 
     //propriedades
@@ -23,11 +23,11 @@ public class ComInimigos : MonoBehaviour
         
     }
 
-    public void Action(){
+    public override void Action(){
         //sem acao
     }
 
-    public bool isTriggerd(){
+    public override bool isTriggered(){
         //se houverem inimigos proximos
             //return true
         return false;

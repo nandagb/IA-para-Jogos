@@ -26,11 +26,7 @@ public class MEF : MonoBehaviour
         }
     }
 
-    void FixedUpdate(){
-        if(this.current_state != null){
-            this.current_state.FixedUpdate();
-        }
-    }
+    
 
     public void addState(Estado estado){
         this.states.Add(estado);

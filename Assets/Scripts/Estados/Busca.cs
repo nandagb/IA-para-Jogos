@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Busca : MonoBehaviour
+public class Busca : Estado
 {
 
     //propriedades
@@ -19,20 +19,23 @@ public class Busca : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    public override void Update()
     {
-        
+        return;
     }
 
-    void Action(){
         //buscar inimigos no mapa
+    public override void Action(){
+        return;
     }
 
-    void Exit(){
+    public override void Exit(){
         //sem acao
+        return;
     }
 
-    void Enter(){
+    public override void Enter(){
         //sem acao
+        return;
     }
 }

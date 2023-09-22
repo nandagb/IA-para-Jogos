@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Inicial : MonoBehaviour
+public class Inicial : Estado
 {
     //propriedades
 
@@ -18,23 +18,26 @@ public class Inicial : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    public override void Update()
     {
-        
+        return;   
     }
 
 
-    void Action(){
+    public override void Action(){
         //spawnar em um lugar aleatorio
+        return;
     }
 
 
-    void Exit(){
+    public override  void Exit(){
         //sem acao
+        return;
     }
 
-    void Enter(){
+    public override void Enter(){
         //sem acao
+        return;
     }
 
 }
