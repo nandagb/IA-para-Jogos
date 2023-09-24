@@ -19,20 +19,9 @@ public class Inicial : Estado
 
     //metodos
 
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
-    public override void Update()
-    {
-        return;   
-    }
-
     public Inicial(){
         this.nome = "Inicial";
+
         this.transicoes = new List<Transicao>();
         this.transicoes.Add(new ComInimigos());
         this.transicoes.Add(new SemInimigos());
@@ -49,8 +38,6 @@ public class Inicial : Estado
 
 
     public override void Action(){
-       //print("acao de Inicial: spawn");
-
         //spawnar
         Vector3 newPosition = enemyTransform.position;
         
@@ -66,17 +53,15 @@ public class Inicial : Estado
 
 
     public override  void Exit(){
-        //sem acao
-        return;
+
     }
 
     public override void Enter(){
-        //sem acao
-        return;
+        
     }
 
     public override void printEstado(){
-        //print("Estado Inicial");
+        
     }
 
 }

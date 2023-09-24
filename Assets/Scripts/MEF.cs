@@ -31,8 +31,8 @@ public class MEF : MonoBehaviour
     // Update is called once per frame
     void Update()
     {   
-        this.current_state.Action();
         print("current_state: " + this.current_state.nome);
+        this.current_state.Action();
         triggered_transition = null;
 
         foreach(Transicao transicao in this.current_state.getTransicoes()){
@@ -43,8 +43,6 @@ public class MEF : MonoBehaviour
             }
             
         }
-
-        Debug.Log("nome da triggered_transition: " + this.triggered_transition.nome);
         
         if(this.triggered_transition != null){
             Debug.Log("não é null");

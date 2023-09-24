@@ -19,15 +19,6 @@ public abstract class Estado
 
     }
 
-    // Start is called before the first frame update
-    void Start()
-    {
-            
-    }
-
-    // Update is called once per frame
-    public abstract void Update();
-
     public abstract void Exit();
 
     public abstract void Enter();

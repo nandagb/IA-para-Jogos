@@ -15,27 +15,16 @@ public class Busca : Estado
     Transform enemyTransform; 
     Transform playerTransform;
     GameObject mapObject;
-    Mapa map;
-
-    //List of Actions
-    //List of Transitions: ComInimigos
+    Mapa map;    
 
     //metodos
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    public override void Update()
-    {
-        return;
-    }
-
     public Busca(){
         this.nome = "Busca";
+
+        this.transicoes = new List<Transicao>();
+        this.transicoes.Add(new ComInimigos());
+
         playerObject = GameObject.Find("Player");
         enemyObject = GameObject.Find("Inimigo");
         player = playerObject.GetComponent<Player>();
@@ -46,7 +35,6 @@ public class Busca : Estado
         map = mapObject.GetComponent<Mapa>();
     }
 
-        //buscar inimigos no mapa
     public override void Action(){
         //buscar um inimigo
 
@@ -78,16 +66,14 @@ public class Busca : Estado
     }
 
     public override void Exit(){
-        //sem acao
-        return;
+
     }
 
     public override void Enter(){
-        //sem acao
-        return;
+        
     }
 
     public override void printEstado(){
-        //print("Estado Busca");
+        
     }
 }

@@ -22,21 +22,11 @@ public class Cacar : Estado
 
     //metodos
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    public override void Update()
-    {
-        return;
-        
-    }
-
     public Cacar(){
         this.nome = "Cacar";
+
+        this.transicoes = new List<Transicao>();
+
         playerObject = GameObject.Find("Player");
         enemyObject = GameObject.Find("Inimigo");
         player = playerObject.GetComponent<Player>();
