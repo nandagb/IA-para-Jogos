@@ -17,6 +17,7 @@ public class Inimigo : Personagem
     Mapa map;
     Celula celula;
 
+
     public enum InimigoMEFStateStype{
         INICIAL = 0,
         CACAR,
@@ -30,25 +31,16 @@ public class Inimigo : Personagem
     // Start is called before the first frame update
     public override void Start()
     {
-        playerObject = GameObject.Find("Player");
+        /* playerObject = GameObject.Find("Player");
         player = playerObject.GetComponent<Player>();
         enemyTransform = GameObject.Find("Inimigo").transform; 
         playerTransform = playerObject.transform;
         mapObject = GameObject.Find("Mapa");
-        map = mapObject.GetComponent<Mapa>();
+        map = mapObject.GetComponent<Mapa>(); */
 
-        //spawnar
-        Vector3 newPosition = enemyTransform.position;
-        
-        System.Random ran = new System.Random();
-        float x = ran.Next(-5, 4);
-        newPosition.x = x;
-        float y = ran.Next(-4, 5);
-        newPosition.y = y;
 
-        enemyTransform.position = newPosition;
+        //celula = map.getCelula(enemyTransform.position.x, enemyTransform.position.y);
 
-        celula = map.getCelula(enemyTransform.position.x, enemyTransform.position.y);
     }
 
     double EuclidianDist(){
@@ -61,7 +53,8 @@ public class Inimigo : Personagem
     // Update is called once per frame
     public override void Update()
     {
-        celula = map.getCelula(enemyTransform.position.x, enemyTransform.position.y);
+
+        /* celula = map.getCelula(enemyTransform.position.x, enemyTransform.position.y);
 
         Vector3 newPosition = enemyTransform.position;
 
@@ -124,7 +117,7 @@ public class Inimigo : Personagem
                 enemyTransform.position = newPosition;
 
             }
-        }        
+        }         */
 
     }
 

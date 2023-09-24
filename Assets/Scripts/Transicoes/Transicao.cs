@@ -2,12 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class Transicao : MonoBehaviour
+public abstract class Transicao
 {
 
     //propriedades
 
-    Estado estado;
+    public Estado target_state;
+    public string nome = "";
 
     //metodos
 
@@ -27,13 +28,15 @@ public abstract class Transicao : MonoBehaviour
 
     public abstract bool isTriggered();
 
+    public abstract void printTransicao();
+
     public void setTargetState(Estado estado){
-        this.estado = estado;
+        this.target_state = estado;
     }
 
 
     public Estado getTargedState(){
-        return estado;
+        return this.target_state;
     }
 
 }

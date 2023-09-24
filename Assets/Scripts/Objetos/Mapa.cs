@@ -67,7 +67,7 @@ public class Mapa : MonoBehaviour
 
     public Celula getCelula(float x, float y){
         int linhas = celulas.GetLength(0);
-        int colunas = celulas.GetLength(1);
+        int colunas = celulas.GetLength(1);        
 
         //setando celulas ativas
         for (int i = 0; i < linhas; i++)

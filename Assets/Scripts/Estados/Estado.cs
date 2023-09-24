@@ -2,14 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class Estado : MonoBehaviour
+public abstract class Estado
 {
 
     //propriedades
 
+    public string nome = "";
     //list of actions?
 
-    List<Transicao> transicoes;
+    public List<Transicao> transicoes;
 
     //metodos
 
@@ -36,4 +37,11 @@ public abstract class Estado : MonoBehaviour
     public void setTransicoes(List<Transicao> transicoes){
         this.transicoes = transicoes;
     }
+
+    public abstract void printEstado();
+
+    public List<Transicao> getTransicoes(){
+        return this.transicoes;
+    }
+
 }
