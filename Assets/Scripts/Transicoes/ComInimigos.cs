@@ -17,18 +17,6 @@ public class ComInimigos : Transicao
 
     //metodos
 
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     public ComInimigos(){
         this.nome = "Com Inimigos";
         playerObject = GameObject.Find("Player");

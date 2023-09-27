@@ -2,37 +2,55 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Atacar : MonoBehaviour
+public class Atacar : Estado
 {
 
     //propriedades
 
-    //List of Actions
+    GameObject playerObject;
+    GameObject enemyObject;
+    Player player;
+    Inimigo enemy;
+    Transform enemyTransform; 
+    Transform playerTransform;
+    GameObject mapObject;
+    Mapa map;
+
     //List of Transitions: InimigoFracoProximo, Morto, PoucaVida
 
     //metodos
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
+    public Atacar(){
+        this.nome = "Atacar";
+
+        this.transicoes = new List<Transicao>();
+        this.transicoes.Add(new PoucaVida());
+
+        playerObject = GameObject.Find("Player");
+        enemyObject = GameObject.Find("Inimigo");
+        player = playerObject.GetComponent<Player>();
+        enemy = enemyObject.GetComponent<Inimigo>();
+        enemyTransform = enemyObject.transform;
+        playerTransform = playerObject.transform;
+        mapObject = GameObject.Find("Mapa");
+        map = mapObject.GetComponent<Mapa>();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+    public override void Action(){
+        if(player.life > 0){
+            player.life--;
+        }
     }
 
-    public void Action(){
-        //Atacar o jogador
-    }
-
-    public void Exit(){
+    public override void Exit(){
         //sem acao
     }
 
-    public void Enter(){
+    public override void Enter(){
         //sem acao
+    }
+
+    public override void printEstado(){
+
     }
 }

@@ -26,6 +26,7 @@ public class Cacar : Estado
         this.nome = "Cacar";
 
         this.transicoes = new List<Transicao>();
+        this.transicoes.Add(new InimigoProximo());
 
         playerObject = GameObject.Find("Player");
         enemyObject = GameObject.Find("Inimigo");

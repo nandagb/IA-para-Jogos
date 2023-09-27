@@ -15,7 +15,7 @@ public class Busca : Estado
     Transform enemyTransform; 
     Transform playerTransform;
     GameObject mapObject;
-    Mapa map;    
+    Mapa map; 
 
     //metodos
 
