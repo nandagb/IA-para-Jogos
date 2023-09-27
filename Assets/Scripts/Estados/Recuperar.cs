@@ -19,17 +19,12 @@ public class Recuperar : Estado
     List<Vector3> pocoes;
     Vector3 target;
 
-
-    //List of Actions
-    //List of Transitions: VidaRecuperada
-
     //metodos
 
     public Recuperar(){
         this.nome = "Recuperar";
 
         this.transicoes = new List<Transicao>();
-        //this.transicoes.Add(new VidaRecuperada());
 
         this.pocoes = new List<Vector3>();
         this.pocoes.Add(new Vector3(-3.48f, 3.42f, -1f));
@@ -57,7 +52,6 @@ public class Recuperar : Estado
 
         foreach(Vector3 position in pocoes){
             if(position.z == -1f){
-                Debug.Log("encontrei uma pocao");
                 target = position;
                 break;
             }
@@ -84,7 +78,6 @@ public class Recuperar : Estado
 
         for(int i=0; i<pocoes.Count; i++){
             if(Math.Abs(enemyTransform.position.x - pocoes[i].x) <= 0.05 && Math.Abs(enemyTransform.position.y - pocoes[i].y) <= 0.05){
-                Debug.Log("setando posicao como visitada");
                 Vector3 updatedVector = pocoes[i];
                 updatedVector.z = 1f;
                 pocoes[i] = updatedVector;

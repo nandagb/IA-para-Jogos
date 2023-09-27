@@ -2,34 +2,41 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Morto : MonoBehaviour
+public class Morto : Transicao
 {
 
     //propriedades
 
     //Target State: Inicial
+    Transform enemyTransform;
+    Transform playerTransform;
+    GameObject playerObject;
+    GameObject enemyObject;
+    Player player;
+    Inimigo enemy;
 
     //metodos
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
+    public Morto(){
+        this.nome = "Morto";
+
+        playerObject = GameObject.Find("Player");
+        enemyObject = GameObject.Find("Inimigo");
+        player = playerObject.GetComponent<Player>();
+        enemy = enemyObject.GetComponent<Inimigo>();
+        enemyTransform = enemyObject.transform;
+        playerTransform = playerObject.transform;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-    public void Action(){
+    public override void Action(){
         //sem acao
     }
 
-    public bool isTriggered(){
-        //se o npc estiver morto
-            //return true;
-        return false;
+    public override bool isTriggered(){
+        return enemy.life == 0;
+    }
+
+    public override void printTransicao(){
+
     }
 }

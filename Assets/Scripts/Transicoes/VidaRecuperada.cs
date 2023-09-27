@@ -25,8 +25,6 @@ public class VidaRecuperada : Transicao
         enemy = enemyObject.GetComponent<Inimigo>();
         enemyTransform = enemyObject.transform;
         playerTransform = playerObject.transform;
-        
-        this.target_state = new Busca();
     }
 
     public override void Action(){
@@ -34,7 +32,7 @@ public class VidaRecuperada : Transicao
     }
 
     public override bool isTriggered(){
-        return enemy.life == 10;
+        return !(enemy.life < 9);
     }
 
     public override void printTransicao(){

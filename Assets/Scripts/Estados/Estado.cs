@@ -7,13 +7,11 @@ public abstract class Estado
 
     //propriedades
 
-    public string nome = "";
-    //list of actions?
+    public string nome = "";    
 
     public List<Transicao> transicoes;
 
     //metodos
-
 
     public Estado(){
 
@@ -33,6 +31,10 @@ public abstract class Estado
 
     public List<Transicao> getTransicoes(){
         return this.transicoes;
+    }
+
+    public void addTransicao(Transicao transicao){
+        this.transicoes.Add(transicao);
     }
 
 }

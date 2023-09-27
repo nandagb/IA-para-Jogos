@@ -16,25 +16,13 @@ public class SemInimigos : Transicao
 
     //metodos
 
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     public SemInimigos(){
         this.nome = "SemInimigos";
+        
         playerObject = GameObject.Find("Player");
         player = playerObject.GetComponent<Player>();
         enemyTransform = GameObject.Find("Inimigo").transform; 
         playerTransform = playerObject.transform;
-        this.target_state = new Busca();
     }
 
 

@@ -11,21 +11,59 @@ public class MEF : MonoBehaviour
     Estado current_state;
     Transicao triggered_transition;
 
-    
-    
-
     //metodos
 
     // Start is called before the first frame update
     void Start()
     {
+        //iniciando transicoes
+        Transicao comInimigos = new ComInimigos();
+        Transicao semInimigos = new SemInimigos();
+        Transicao inimigoProximo = new InimigoProximo();
+        Transicao morto = new Morto();
+        Transicao poucaVida = new PoucaVida();
+        Transicao vidaRecuperada = new VidaRecuperada();
+
+        //iniciando estados
+        Estado inicial = new Inicial();
+        Estado busca = new Busca();
+        Estado cacar = new Cacar();
+        Estado atacar = new Atacar();
+        Estado recuperar = new Recuperar();
+
+        //adicionando transicoes a estados
+        inicial.addTransicao(comInimigos);
+        inicial.addTransicao(semInimigos);
+
+        busca.addTransicao(comInimigos);
+
+        cacar.addTransicao(inimigoProximo);
+
+        atacar.addTransicao(morto);
+        atacar.addTransicao(poucaVida);
+
+        recuperar.addTransicao(vidaRecuperada);
+
+        //adicionando estados a transicoes
+        comInimigos.setTargetState(cacar);
+        semInimigos.setTargetState(busca);
+        inimigoProximo.setTargetState(atacar);
+        poucaVida.setTargetState(recuperar);
+        vidaRecuperada.setTargetState(busca);
+        morto.setTargetState(inicial);
+
+        //preenchendo lista de estados
         this.states = new List<Estado>();
-        this.states.Add(new Inicial());
+        this.states.Add(inicial);
+        this.states.Add(busca);
+        this.states.Add(cacar);
+        this.states.Add(atacar);
+        this.states.Add(recuperar);
 
         this.current_state = this.states[0];
 
-        this.states.Add(new Busca());
-        this.states.Add(new Cacar());
+
+
     }
 
     // Update is called once per frame
@@ -45,7 +83,6 @@ public class MEF : MonoBehaviour
         }
         
         if(this.triggered_transition != null){
-            Debug.Log("não é null");
             Estado target_state = this.triggered_transition.getTargedState();
 
             this.current_state.Exit();

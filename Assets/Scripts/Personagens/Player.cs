@@ -42,7 +42,10 @@ public class Player : Personagem
 
         if(EuclidianDist() <= 0.5){
             //atacar
-            enemy.life--;
+            if(enemy.life > 0){
+                enemy.life--;
+            }
+            
         }
     }
 

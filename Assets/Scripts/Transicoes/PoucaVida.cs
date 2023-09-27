@@ -27,7 +27,6 @@ public class PoucaVida : Transicao
         enemyTransform = enemyObject.transform;
         playerTransform = playerObject.transform;
         
-        this.target_state = new Recuperar();
     }
 
     public override void Action(){

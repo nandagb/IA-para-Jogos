@@ -18,11 +18,11 @@ public class InimigoProximo : Transicao
 
     public InimigoProximo(){
         this.nome = "Inimigo Proximo";
+        
         playerObject = GameObject.Find("Player");
         player = playerObject.GetComponent<Player>();
         enemyTransform = GameObject.Find("Inimigo").transform; 
         playerTransform = playerObject.transform;
-        this.target_state = new Atacar();
     }
 
     public override void Action(){

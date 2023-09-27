@@ -23,7 +23,6 @@ public class Busca : Estado
         this.nome = "Busca";
 
         this.transicoes = new List<Transicao>();
-        this.transicoes.Add(new ComInimigos());
 
         playerObject = GameObject.Find("Player");
         enemyObject = GameObject.Find("Inimigo");

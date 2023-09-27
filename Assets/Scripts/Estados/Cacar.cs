@@ -17,16 +17,12 @@ public class Cacar : Estado
     GameObject mapObject;
     Mapa map;
 
-    //List of Actions
-    //List of Transitions: InimigoProximo
-
     //metodos
 
     public Cacar(){
         this.nome = "Cacar";
 
         this.transicoes = new List<Transicao>();
-        this.transicoes.Add(new InimigoProximo());
 
         playerObject = GameObject.Find("Player");
         enemyObject = GameObject.Find("Inimigo");

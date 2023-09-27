@@ -12,8 +12,6 @@ public class ComInimigos : Transicao
     Transform playerTransform;
     GameObject playerObject;
     Player player;
-    //public string nome = "Com Inimigos";
-    //target State: 
 
     //metodos
 
@@ -23,7 +21,6 @@ public class ComInimigos : Transicao
         player = playerObject.GetComponent<Player>();
         enemyTransform = GameObject.Find("Inimigo").transform; 
         playerTransform = playerObject.transform;
-        this.target_state = new Cacar();
     }
 
     public override void Action(){
@@ -46,6 +43,6 @@ public class ComInimigos : Transicao
     }
 
     public override void printTransicao(){
-       // print("Transição: Com Inimigos");
+        
     }
 }

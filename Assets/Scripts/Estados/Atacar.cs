@@ -16,15 +16,12 @@ public class Atacar : Estado
     GameObject mapObject;
     Mapa map;
 
-    //List of Transitions: InimigoFracoProximo, Morto, PoucaVida
-
     //metodos
 
     public Atacar(){
         this.nome = "Atacar";
 
         this.transicoes = new List<Transicao>();
-        this.transicoes.Add(new PoucaVida());
 
         playerObject = GameObject.Find("Player");
         enemyObject = GameObject.Find("Inimigo");

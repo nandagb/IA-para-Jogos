@@ -23,8 +23,6 @@ public class Inicial : Estado
         this.nome = "Inicial";
 
         this.transicoes = new List<Transicao>();
-        this.transicoes.Add(new ComInimigos());
-        this.transicoes.Add(new SemInimigos());
 
         playerObject = GameObject.Find("Player");
         enemyObject = GameObject.Find("Inimigo");
