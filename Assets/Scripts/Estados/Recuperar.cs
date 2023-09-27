@@ -29,6 +29,7 @@ public class Recuperar : Estado
         this.nome = "Recuperar";
 
         this.transicoes = new List<Transicao>();
+        //this.transicoes.Add(new VidaRecuperada());
 
         this.pocoes = new List<Vector3>();
         this.pocoes.Add(new Vector3(-3.48f, 3.42f, -1f));

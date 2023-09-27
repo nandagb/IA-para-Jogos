@@ -19,12 +19,14 @@ public class PoucaVida : Transicao
 
     public PoucaVida(){
         this.nome = "Pouca Vida";
+
         playerObject = GameObject.Find("Player");
         enemyObject = GameObject.Find("Inimigo");
         player = playerObject.GetComponent<Player>();
         enemy = enemyObject.GetComponent<Inimigo>();
         enemyTransform = enemyObject.transform;
         playerTransform = playerObject.transform;
+        
         this.target_state = new Recuperar();
     }
 
