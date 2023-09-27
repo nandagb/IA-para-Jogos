@@ -23,6 +23,7 @@ public class MEF : MonoBehaviour
         Transicao morto = new Morto();
         Transicao poucaVida = new PoucaVida();
         Transicao vidaRecuperada = new VidaRecuperada();
+        Transicao inimigoLonge = new InimigoLonge();
 
         //iniciando estados
         Estado inicial = new Inicial();
@@ -41,6 +42,7 @@ public class MEF : MonoBehaviour
 
         atacar.addTransicao(morto);
         atacar.addTransicao(poucaVida);
+        atacar.addTransicao(inimigoLonge);
 
         recuperar.addTransicao(vidaRecuperada);
 
@@ -51,6 +53,7 @@ public class MEF : MonoBehaviour
         poucaVida.setTargetState(recuperar);
         vidaRecuperada.setTargetState(busca);
         morto.setTargetState(inicial);
+        inimigoLonge.setTargetState(cacar);
 
         //preenchendo lista de estados
         this.states = new List<Estado>();
