@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class Recuperar : Estado
 {
@@ -14,6 +15,10 @@ public class Recuperar : Estado
     Transform playerTransform;
     GameObject mapObject;
     Mapa map;
+    
+    List<Vector3> pocoes;
+    Vector3 target;
+
 
     //List of Actions
     //List of Transitions: VidaRecuperada
@@ -24,6 +29,18 @@ public class Recuperar : Estado
         this.nome = "Recuperar";
 
         this.transicoes = new List<Transicao>();
+
+        this.pocoes = new List<Vector3>();
+        this.pocoes.Add(new Vector3(-3.48f, 3.42f, -1f));
+        this.pocoes.Add(new Vector3(2.37f, 3.42f, -1f));
+        this.pocoes.Add(new Vector3(-0.58f, 3.46f, -1f));
+        this.pocoes.Add(new Vector3(-3.44f, 0.51f, -1f));
+        this.pocoes.Add(new Vector3(-0.45f, 0.53f, -1f));
+        this.pocoes.Add(new Vector3(2.43f, 0.57f, -1f));
+        this.pocoes.Add(new Vector3(-3.47f, -2.39f, -1f));
+        this.pocoes.Add(new Vector3(-0.52f, -2.5f, -1f));
+        this.pocoes.Add(new Vector3(2.35f, -2.5f, -1f));
+        
 
         playerObject = GameObject.Find("Player");
         enemyObject = GameObject.Find("Inimigo");
@@ -37,33 +54,42 @@ public class Recuperar : Estado
     public override void Action(){
         //procurar pocoes de vida para recuperar a vida
 
-        //por enquanto está seguindo a funcao de busca, (melhorar)
+        foreach(Vector3 position in pocoes){
+            if(position.z == -1f){
+                Debug.Log("encontrei uma pocao");
+                target = position;
+                break;
+            }
+        }
 
         Vector3 newPosition = enemyTransform.position;
-        Vector3 randomPosition = enemyTransform.position;
 
-        System.Random ran = new System.Random();
-        float x = ran.Next(-5, 5);
-        randomPosition.x = x;
-        float y = ran.Next(-5, 5);
-        randomPosition.y = y;
-
-        if(randomPosition.x > enemyTransform.position.x){
+        if(target.x > enemyTransform.position.x){
             newPosition.x += + 0.5f * enemy.speed * Time.deltaTime;
         }
-        else if(randomPosition.x < enemyTransform.position.x) {
+        else if(target.x < enemyTransform.position.x) {
             newPosition.x -= 0.5f * enemy.speed * Time.deltaTime;
         }
                 
 
-        if(randomPosition.y > enemyTransform.position.y){
+        if(target.y > enemyTransform.position.y){
             newPosition.y += 0.5f * enemy.speed * Time.deltaTime;
         }
-        else if(randomPosition.y < enemyTransform.position.y) {
+        else if(target.y < enemyTransform.position.y) {
             newPosition.y -= 0.5f * enemy.speed * Time.deltaTime;
         }
 
         enemyTransform.position = newPosition;
+
+        for(int i=0; i<pocoes.Count; i++){
+            if(Math.Abs(enemyTransform.position.x - pocoes[i].x) <= 0.05 && Math.Abs(enemyTransform.position.y - pocoes[i].y) <= 0.05){
+                Debug.Log("setando posicao como visitada");
+                Vector3 updatedVector = pocoes[i];
+                updatedVector.z = 1f;
+                pocoes[i] = updatedVector;
+                break;
+            }
+        }
     }
 
     public override void Exit(){
