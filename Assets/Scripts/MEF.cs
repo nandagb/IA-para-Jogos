@@ -62,8 +62,6 @@ public class MEF : MonoBehaviour
 
         this.current_state = this.states[0];
 
-
-
     }
 
     // Update is called once per frame
