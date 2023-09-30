@@ -17,7 +17,7 @@ public class Mapa : MonoBehaviour
     //metodos
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         celulas = new Celula[3, 3];
         
@@ -65,6 +65,7 @@ public class Mapa : MonoBehaviour
 
     }
 
+    /* RETORNA A CELULA CORRESPONDENTE ÀS COORDENADAS x E y PASSADAS */
     public Celula getCelula(float x, float y){
         int linhas = celulas.GetLength(0);
         int colunas = celulas.GetLength(1);        

@@ -10,12 +10,15 @@ public class MEF : MonoBehaviour
     List<Estado> states;
     Estado current_state;
     Transicao triggered_transition;
+    Mapa mapa;
 
     //metodos
 
     // Start is called before the first frame update
     void Start()
     {
+        /* INCIALIZANDO MAPA */
+        this.mapa = GameObject.Find("Mapa").GetComponent<Mapa>();
         //iniciando transicoes
         Transicao comInimigos = new ComInimigos();
         Transicao semInimigos = new SemInimigos();
@@ -46,6 +49,8 @@ public class MEF : MonoBehaviour
 
         recuperar.addTransicao(vidaRecuperada);
 
+        cacar.addTransicao(semInimigos);
+
         //adicionando estados a transicoes
         comInimigos.setTargetState(cacar);
         semInimigos.setTargetState(busca);
@@ -54,6 +59,7 @@ public class MEF : MonoBehaviour
         vidaRecuperada.setTargetState(busca);
         morto.setTargetState(inicial);
         inimigoLonge.setTargetState(cacar);
+        semInimigos.setTargetState(busca);
 
         //preenchendo lista de estados
         this.states = new List<Estado>();
@@ -69,57 +75,72 @@ public class MEF : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {   
-        print("current_state: " + this.current_state.nome);
-        this.current_state.Action();
-        triggered_transition = null;
+    {
+        if (mapa.getCelula(transform.position.x, transform.position.y).Ativa() || this.current_state == this.states[0])
+        {
+            print("current_state: " + this.current_state.nome);
+            this.current_state.Action();
+            triggered_transition = null;
 
-        foreach(Transicao transicao in this.current_state.getTransicoes()){
-            if(transicao.isTriggered()){
-                Debug.Log("nome da transicao: " + transicao.nome);
-                this.triggered_transition = transicao;
-                break;
+            foreach (Transicao transicao in this.current_state.getTransicoes())
+            {
+                if (transicao.isTriggered())
+                {
+                    Debug.Log("nome da transicao: " + transicao.nome);
+                    this.triggered_transition = transicao;
+                    break;
+                }
+
             }
-            
+
+            if (this.triggered_transition != null)
+            {
+                Estado target_state = this.triggered_transition.getTargedState();
+
+                this.current_state.Exit();
+                this.triggered_transition.Action();
+                target_state.Enter();
+
+                this.current_state = target_state;
+            }
         }
-        
-        if(this.triggered_transition != null){
-            Estado target_state = this.triggered_transition.getTargedState();
-
-            this.current_state.Exit();
-            this.triggered_transition.Action();
-            target_state.Enter();
-
-            this.current_state = target_state;
+        else
+        {
+            Debug.Log("A célula está desativada");
         }
+    }
 
+    public MEF()
+    {
 
     }
 
-    public MEF(){
-        
-    }
-
-    public void addState(Estado estado){
+    public void addState(Estado estado)
+    {
         this.states.Add(estado);
     }
 
-    public Estado getCurrentState(){
+    public Estado getCurrentState()
+    {
         return this.current_state;
     }
 
-    public void setCurrentState(Estado estado){
-        if(this.current_state == estado){
+    public void setCurrentState(Estado estado)
+    {
+        if (this.current_state == estado)
+        {
             return;
         }
 
-        if(this.current_state != null){
+        if (this.current_state != null)
+        {
             this.current_state.Exit();
         }
 
         this.current_state = estado;
 
-        if(this.current_state != null){
+        if (this.current_state != null)
+        {
             this.current_state.Enter();
         }
 
