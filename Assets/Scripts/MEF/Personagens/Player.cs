@@ -11,9 +11,11 @@ public class Player : Personagem
     //public int life = 10;
     Transform playerTransform;
     Transform enemyTransform;
+    Transform smartEnemyTransform;
     GameObject enemyObject;
-
+    GameObject smartEnemyObject;
     Inimigo enemy;
+    InimigoInteligente smartEnemy;
 
     //metodos
 
@@ -22,6 +24,9 @@ public class Player : Personagem
     {
         playerTransform = GameObject.Find("Player").transform;
         enemyObject = GameObject.Find("Inimigo");
+        smartEnemyObject = GameObject.Find("InimigoInteligente");
+        smartEnemy = smartEnemyObject.GetComponent<InimigoInteligente>();
+        smartEnemyTransform = smartEnemyObject.transform;
         enemy = enemyObject.GetComponent<Inimigo>();
         enemyTransform = enemyObject.transform; 
 
@@ -40,19 +45,30 @@ public class Player : Personagem
             playerTransform.position = newPosition;
         }
 
-        if(EuclidianDist() <= 0.5){
+        if(EuclidianDist(playerTransform, enemyTransform) <= 0.5){
             //atacar
             if(enemy.life > 0){
                 enemy.life--;
             }
             
         }
+
+        if(smartEnemy != null){
+            if(EuclidianDist(playerTransform, smartEnemyTransform) <= 0.5){
+                //atacar
+                if(smartEnemy.life > 0){
+                    smartEnemy.life--;
+                }
+            
+            }
+        }
+        
     }
 
-    double EuclidianDist(){
+    double EuclidianDist(Transform player, Transform enemy){
         //calcula a distancia 
-        double diffx = Math.Pow(playerTransform.position.x - enemyTransform.position.x, 2);
-        double diffy = Math.Pow(playerTransform.position.y - enemyTransform.position.y, 2); 
+        double diffx = Math.Pow(player.position.x - enemy.position.x, 2);
+        double diffy = Math.Pow(player.position.y - enemy.position.y, 2); 
         return Math.Sqrt(diffx+diffy);
     }
 
