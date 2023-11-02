@@ -10,8 +10,6 @@ public class Sequence : Node
     //public string name = "Sequence";
 
     public override NodeState Evaluate(){
-        Debug.Log("evaluating sequence");
-        name = "Sequence";
         bool anyChildIsRunning = false;
 
         foreach(Node node in children){

@@ -24,15 +24,11 @@ public class BuscaNode : Node
         playerTransform = playerObject.transform;
         mapObject = GameObject.Find("Mapa");
         map = mapObject.GetComponent<Mapa>();
-        name = "BuscaNode";
+
     }
 
-    public override NodeState Evaluate(){
-        Debug.Log("Evaluating busca node");
+    public override NodeState Evaluate(){        
         //buscar um inimigo
-        
-        
-        
         state = NodeState.RUNNING;
 
         //enquanto estiver rodando calcula uma posicao nova para ir
@@ -62,7 +58,6 @@ public class BuscaNode : Node
 
         enemyTransform.position = newPosition;
         //fim da acao de busca
-        //Debug.Log("returning running from busca node");
         return state;
         
 

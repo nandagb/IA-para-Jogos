@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-public class CacaNode : Node
+public class ProximoNode : Node
 {
     GameObject playerObject;
     GameObject enemyObject;
@@ -14,7 +14,8 @@ public class CacaNode : Node
     GameObject mapObject;
     Mapa map;
 
-    public CacaNode(){
+    public ProximoNode(){
+        
         playerObject = GameObject.Find("Player");
         enemyObject = GameObject.Find("InimigoInteligente");
         player = playerObject.GetComponent<Player>();
@@ -25,35 +26,20 @@ public class CacaNode : Node
         map = mapObject.GetComponent<Mapa>();
     }
 
-
     public override NodeState Evaluate(){
-        state = NodeState.RUNNING;
+        state = NodeState.FAILURE;
 
         double diffx = Math.Pow(playerTransform.position.x - enemyTransform.position.x, 2);
         double diffy = Math.Pow(playerTransform.position.y - enemyTransform.position.y, 2); 
         double dist = Math.Sqrt(diffx+diffy);
 
-        Vector3 newPosition = enemyTransform.position;
-
-        if(dist >= 0.5){
-            if(playerTransform.position.x > enemyTransform.position.x){
-                newPosition.x += + 0.5f * enemy.speed * Time.deltaTime;
-            }
-            else if(playerTransform.position.x < enemyTransform.position.x) {
-                newPosition.x -= 0.5f * enemy.speed * Time.deltaTime;
-            }
-                    
-
-            if(playerTransform.position.y > enemyTransform.position.y){
-                newPosition.y += 0.5f * enemy.speed * Time.deltaTime;
-            }
-            else if(playerTransform.position.y < enemyTransform.position.y) {
-                newPosition.y -= 0.5f * enemy.speed * Time.deltaTime;
-            }
+        if(dist < 0.5){
+            state = NodeState.SUCCESS;
+            return state;
         }
-
-        enemyTransform.position = newPosition;
 
         return state;
     }
+
+    
 }

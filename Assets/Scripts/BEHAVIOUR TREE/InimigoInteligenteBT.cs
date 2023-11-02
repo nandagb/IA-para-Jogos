@@ -11,7 +11,16 @@ public class InimigoInteligenteBT : BehaviourTree
             new Sequence(new List<Node> 
             {
                 new CheckInimigo(),
-                new CacaNode()
+                new Selector( new List<Node> 
+                {
+                    new Sequence(new List<Node>
+                    {
+                        new ProximoNode(),
+                        new InimigoVivo(),
+                        new AtacarNode(),
+                    }),
+                    new CacaNode(),
+                }),
             }),
             new BuscaNode(),
         });

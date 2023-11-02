@@ -1,9 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using System;
 
-public class CheckInimigo : Node
+public class InimigoVivo : Node
 {
     GameObject playerObject;
     GameObject enemyObject;
@@ -14,7 +13,7 @@ public class CheckInimigo : Node
     GameObject mapObject;
     Mapa map;
 
-    public CheckInimigo(){
+    public InimigoVivo(){
         playerObject = GameObject.Find("Player");
         enemyObject = GameObject.Find("InimigoInteligente");
         player = playerObject.GetComponent<Player>();
@@ -28,15 +27,11 @@ public class CheckInimigo : Node
     public override NodeState Evaluate(){
         state = NodeState.FAILURE;
         
-        double diffx = Math.Pow(playerTransform.position.x - enemyTransform.position.x, 2);
-        double diffy = Math.Pow(playerTransform.position.y - enemyTransform.position.y, 2); 
-        double dist = Math.Sqrt(diffx+diffy);
-
-        if(dist <= 2.5){
+        if(player.life > 0){
             state = NodeState.SUCCESS;
             return state;
         }
-
+        
         return state;
     }
 }
