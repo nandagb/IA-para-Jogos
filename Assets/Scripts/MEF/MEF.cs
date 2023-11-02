@@ -78,7 +78,7 @@ public class MEF : MonoBehaviour
     {
         if (mapa.getCelula(transform.position.x, transform.position.y).Ativa() || this.current_state == this.states[0])
         {
-            print("current_state: " + this.current_state.nome);
+            //print("current_state: " + this.current_state.nome);
             this.current_state.Action();
             triggered_transition = null;
 
@@ -86,7 +86,7 @@ public class MEF : MonoBehaviour
             {
                 if (transicao.isTriggered())
                 {
-                    Debug.Log("nome da transicao: " + transicao.nome);
+                    //Debug.Log("nome da transicao: " + transicao.nome);
                     this.triggered_transition = transicao;
                     break;
                 }
@@ -106,7 +106,7 @@ public class MEF : MonoBehaviour
         }
         else
         {
-            Debug.Log("A célula está desativada");
+            //Debug.Log("A célula está desativada");
         }
     }
 
