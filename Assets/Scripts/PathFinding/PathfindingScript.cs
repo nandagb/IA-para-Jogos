@@ -7,6 +7,7 @@ public class PathfindingScript : MonoBehaviour
     public LayerMask unwalkableMask;
     public Vector2 gridWorldSize = new Vector2(20, 20);
     public float nodeRadius = 0.5f;
+    public float moveSpeed = 1f;
 
     private GridNode[,] grid;
 
@@ -19,11 +20,7 @@ public class PathfindingScript : MonoBehaviour
     {
         // Encontrar o caminho e mover em direção ao primeiro nó no caminho
         List<GridNode> path = FindPath(transform.position, target.position);
-        if (path != null && path.Count > 0)
-        {
-            // Mover suavemente em direção à posição do primeiro nó no caminho
-            transform.position = Vector3.Lerp(transform.position, new Vector3(path[0].gridX, path[0].gridY, 0), Time.deltaTime);
-        }
+        MoveAlongPath(path);
     }
 
     void CreateGrid()
@@ -32,26 +29,26 @@ public class PathfindingScript : MonoBehaviour
         grid = new GridNode[Mathf.RoundToInt(gridWorldSize.x), Mathf.RoundToInt(gridWorldSize.y)];
 
         // Calcular o canto inferior esquerdo da grade em coordenadas mundiais
-        Vector3 worldBottomLeft = transform.position - Vector3.right * gridWorldSize.x / 2 - Vector3.forward * gridWorldSize.y / 2;
+        Vector3 worldBottomLeft = new Vector2(-10.5f, -4.5f);
 
         // Iterar através de cada célula da grade e criar um nó
-        for (int x = 0; x < gridWorldSize.x; x++)
+        for (int x = 0; x < grid.GetLength(0); x++)
         {
-            Debug.Log(gridWorldSize.x);
-            Debug.Log(x);
-            for (int y = 0; y < gridWorldSize.y; y++)
+            for (int y = 0; y < grid.GetLength(1); y++)
             {
                 // Calcular a posição mundial do nó
-                Vector3 worldPoint = worldBottomLeft + Vector3.right * (x * nodeRadius * 2 + nodeRadius) + Vector3.forward * (y * nodeRadius * 2 + nodeRadius);
-                
+                Vector3 worldPoint = worldBottomLeft + Vector3.right * (x * nodeRadius * 2) + Vector3.up * (y * nodeRadius * 2);
+
                 // Verificar se o nó é alcançável com base em colisões com objetos intransponíveis
-                bool walkable = !(Physics.CheckSphere(worldPoint, nodeRadius, unwalkableMask));
+                bool walkable = !(Physics2D.OverlapCircle(worldPoint, nodeRadius, unwalkableMask));
+                Debug.Log(walkable);
 
                 // Criar um GridNode e atribuí-lo à matriz da grade
                 grid[x, y] = new GridNode(walkable, worldPoint, x, y);
             }
         }
     }
+
 
     public void SetTarget(Vector3 targetPosition)
     {
@@ -68,7 +65,7 @@ public class PathfindingScript : MonoBehaviour
         // Converter posições mundiais para nós da grade
         GridNode startNode = NodeFromWorldPoint(startPos);
         GridNode targetNode = NodeFromWorldPoint(targetPos);
-        
+
         // Inicializar conjuntos abertos e fechados para pathfinding
         List<GridNode> openSet = new List<GridNode>();
         HashSet<GridNode> closedSet = new HashSet<GridNode>();
@@ -140,22 +137,26 @@ public class PathfindingScript : MonoBehaviour
 
     void OnDrawGizmos()
     {
-        // Visualizar a grade no editor do Unity
         if (grid != null)
         {
             foreach (GridNode node in grid)
             {
                 Gizmos.color = (node.walkable) ? Color.white : Color.red;
                 Gizmos.DrawCube(node.worldPosition, Vector3.one * (nodeRadius * 2 - 0.1f));
+
+                // Visualize the sphere for collision checking
+                Gizmos.color = Color.blue;
+                Gizmos.DrawWireSphere(node.worldPosition, nodeRadius);
             }
         }
     }
+
 
     GridNode NodeFromWorldPoint(Vector3 worldPosition)
     {
         // Converter uma posição mundial para o nó correspondente da grade
         float percentX = (worldPosition.x + gridWorldSize.x / 2) / gridWorldSize.x;
-        float percentY = (worldPosition.z + gridWorldSize.y / 2) / gridWorldSize.y;
+        float percentY = (worldPosition.y + gridWorldSize.y / 2) / gridWorldSize.y;
 
         percentX = Mathf.Clamp01(percentX);
         percentY = Mathf.Clamp01(percentY);
@@ -208,5 +209,24 @@ public class PathfindingScript : MonoBehaviour
         }
 
         return neighbors;
+    }
+
+    void MoveAlongPath(List<GridNode> path)
+    {
+        if (path != null && path.Count > 0)
+        {
+            // Obter o próximo nó no caminho
+            GridNode nextNode = path[0];
+
+            // Mover em direção ao próximo nó
+            transform.position = Vector3.MoveTowards(transform.position, nextNode.worldPosition, Time.deltaTime * moveSpeed);
+
+            // Verificar se o objeto chegou ao próximo nó
+            if (Vector3.Distance(transform.position, nextNode.worldPosition) < 0.1f)
+            {
+                // Remover o nó atual do caminho
+                path.RemoveAt(0);
+            }
+        }
     }
 }
