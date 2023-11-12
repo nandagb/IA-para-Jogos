@@ -530,11 +530,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3678ffc0b7f3be49bf74b83ccb9c281, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  unwalkableMask:
-    serializedVersion: 2
-    m_Bits: 8
-  gridWorldSize: {x: 10, y: 10}
-  nodeRadius: 0.5
 --- !u!1001 &238053607
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2847,7 +2842,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   life: 10
-  speed: 5
+  speed: 5.5
 --- !u!114 &1736941009
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2951,8 +2946,9 @@ MonoBehaviour:
   unwalkableMask:
     serializedVersion: 2
     m_Bits: 8
-  gridWorldSize: {x: 20, y: 20}
+  gridWorldSize: {x: 23, y: 10}
   nodeRadius: 0.5
+  moveSpeed: 3
 --- !u!1001 &1747975458
 PrefabInstance:
   m_ObjectHideFlags: 0
