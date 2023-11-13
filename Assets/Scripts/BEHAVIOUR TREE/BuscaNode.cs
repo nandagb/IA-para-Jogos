@@ -13,6 +13,7 @@ public class BuscaNode : Node
     Transform playerTransform;
     GameObject mapObject;
     Mapa map;
+    PathfindingScript pathfindingScript;
 
     public BuscaNode(){
 
@@ -24,12 +25,14 @@ public class BuscaNode : Node
         playerTransform = playerObject.transform;
         mapObject = GameObject.Find("Mapa");
         map = mapObject.GetComponent<Mapa>();
+        pathfindingScript = enemyObject.GetComponent<PathfindingScript>();
 
     }
 
     public override NodeState Evaluate(){        
         //buscar um inimigo
         state = NodeState.RUNNING;
+        pathfindingScript.enabled = false;
 
         //enquanto estiver rodando calcula uma posicao nova para ir
         Vector3 newPosition = enemyTransform.position;
