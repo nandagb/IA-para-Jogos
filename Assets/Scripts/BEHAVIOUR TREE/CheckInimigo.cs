@@ -13,6 +13,7 @@ public class CheckInimigo : Node
     Transform playerTransform;
     GameObject mapObject;
     Mapa map;
+    public float enemyRadius=5f;
 
     public CheckInimigo(){
         playerObject = GameObject.Find("Player");
@@ -32,7 +33,7 @@ public class CheckInimigo : Node
         double diffy = Math.Pow(playerTransform.position.y - enemyTransform.position.y, 2); 
         double dist = Math.Sqrt(diffx+diffy);
 
-        if(dist <= 2.5){
+        if(dist <= enemyRadius){
             state = NodeState.SUCCESS;
             return state;
         }
