@@ -103,7 +103,7 @@ public class PathfindingScript : MonoBehaviour
             // Explorar vizinhos do nó atual
             foreach (GridNode neighbor in GetNeighbors(currentNode))
             {
-                Debug.Log(neighbor.position);
+                Debug.Log(neighbor);
                 if (!neighbor.walkable || closedSet.Contains(neighbor))
                 {
                     continue;
