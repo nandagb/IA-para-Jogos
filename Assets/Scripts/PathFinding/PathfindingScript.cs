@@ -5,7 +5,7 @@ public class PathfindingScript : MonoBehaviour
 {
     public Transform target;  // Objeto de destino para o pathfinding
     public LayerMask unwalkableMask;
-    public Vector2 gridWorldSize = new Vector2(20, 20);
+    public Vector2 gridWorldSize = new Vector2(22, 10);
     public float nodeRadius = 0.5f;
     public float moveSpeed = 1f;
 
