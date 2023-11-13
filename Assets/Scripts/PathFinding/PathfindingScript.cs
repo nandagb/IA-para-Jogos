@@ -24,30 +24,34 @@ public class PathfindingScript : MonoBehaviour
     }
 
     void CreateGrid()
+{
+    // Criar uma grade de nós com base nos parâmetros especificados
+    grid = new GridNode[Mathf.RoundToInt(gridWorldSize.x), Mathf.RoundToInt(gridWorldSize.y)];
+
+    // Calcular o canto inferior esquerdo da grade em coordenadas mundiais
+    Vector3 worldBottomLeft = new Vector2(-10.5f, -4.5f);
+
+    // Iterar através de cada célula da grade e criar um nó
+    for (int x = 0; x < grid.GetLength(0); x++)
     {
-        // Criar uma grade de nós com base nos parâmetros especificados
-        grid = new GridNode[Mathf.RoundToInt(gridWorldSize.x), Mathf.RoundToInt(gridWorldSize.y)];
-
-        // Calcular o canto inferior esquerdo da grade em coordenadas mundiais
-        Vector3 worldBottomLeft = new Vector2(-10.5f, -4.5f);
-
-        // Iterar através de cada célula da grade e criar um nó
-        for (int x = 0; x < grid.GetLength(0); x++)
+        for (int y = 0; y < grid.GetLength(1); y++)
         {
-            for (int y = 0; y < grid.GetLength(1); y++)
-            {
-                // Calcular a posição mundial do nó
-                Vector3 worldPoint = worldBottomLeft + Vector3.right * (x * nodeRadius * 2) + Vector3.up * (y * nodeRadius * 2);
+            // Calcular a posição mundial do nó
+            Vector3 worldPoint = worldBottomLeft + Vector3.right * (x * nodeRadius * 2) + Vector3.up * (y * nodeRadius * 2);
 
-                // Verificar se o nó é alcançável com base em colisões com objetos intransponíveis
-                bool walkable = !(Physics2D.OverlapCircle(worldPoint, nodeRadius, unwalkableMask));
-                Debug.Log(walkable);
+            // Debug information
+            Debug.DrawRay(worldPoint, Vector3.up * 2f, Color.yellow, 1f);
+            Debug.DrawRay(worldPoint, Vector3.down * 2f, Color.yellow, 1f);
 
-                // Criar um GridNode e atribuí-lo à matriz da grade
-                grid[x, y] = new GridNode(walkable, worldPoint, x, y);
-            }
+            // Verificar se o nó é alcançável com base em colisões com objetos intransponíveis
+            Collider2D hitCollider = Physics2D.OverlapCircle(worldPoint, nodeRadius, unwalkableMask);
+            bool walkable = (hitCollider == null);
+
+            // Criar um GridNode e atribuí-lo à matriz da grade
+            grid[x, y] = new GridNode(walkable, worldPoint, x, y);
         }
     }
+}
 
 
     public void SetTarget(Vector3 targetPosition)
@@ -99,6 +103,7 @@ public class PathfindingScript : MonoBehaviour
             // Explorar vizinhos do nó atual
             foreach (GridNode neighbor in GetNeighbors(currentNode))
             {
+                Debug.Log(neighbor.position);
                 if (!neighbor.walkable || closedSet.Contains(neighbor))
                 {
                     continue;
@@ -122,7 +127,6 @@ public class PathfindingScript : MonoBehaviour
                 }
             }
         }
-
         return null; // Caminho não encontrado
     }
 
@@ -213,6 +217,7 @@ public class PathfindingScript : MonoBehaviour
 
     void MoveAlongPath(List<GridNode> path)
     {
+        Debug.Log(path);
         if (path != null && path.Count > 0)
         {
             // Obter o próximo nó no caminho
