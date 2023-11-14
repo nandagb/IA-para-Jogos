@@ -47,7 +47,7 @@ public class Player : Personagem
         }
 
         if(smartEnemy != null){
-            if(EuclidianDist(playerTransform, smartEnemyTransform) <= 0.5){
+            if(EuclidianDist(playerTransform, smartEnemyTransform) <= 1){
                 //atacar
                 if(smartEnemy.life > 0){
                     smartEnemy.life--;
@@ -59,7 +59,7 @@ public class Player : Personagem
     }
 
     double EuclidianDist(Transform player, Transform inimigo){
-        Debug.Log(inimigo);
+        // Debug.Log(inimigo);
         //calcula a distancia 
         double diffx = Math.Pow(player.position.x - inimigo.position.x, 2);
         double diffy = Math.Pow(player.position.y - inimigo.position.y, 2); 

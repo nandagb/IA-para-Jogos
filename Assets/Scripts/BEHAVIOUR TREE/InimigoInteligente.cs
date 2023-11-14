@@ -5,6 +5,8 @@ using UnityEngine;
 public class InimigoInteligente : Personagem
 {
     public float speed = 5f;
+    public bool looking_for_potion = false;
+    public float max_life = 10;
     // Start is called before the first frame update
     public override void Start()
     {

@@ -54,10 +54,11 @@ public class PathfindingScript : MonoBehaviour
 }
 
 
-    public void SetTarget(Vector3 targetPosition)
+    public void SetTarget(Transform newTarget)
     {
         // Definir a posição de destino quando um novo destino é especificado
-        target.position = targetPosition;
+        // target.position = targetPosition;
+        target = newTarget;
 
         // Encontrar o caminho para a nova posição de destino
         List<GridNode> path = FindPath(transform.position, target.position);
@@ -103,7 +104,7 @@ public class PathfindingScript : MonoBehaviour
             // Explorar vizinhos do nó atual
             foreach (GridNode neighbor in GetNeighbors(currentNode))
             {
-                Debug.Log(neighbor);
+                // Debug.Log(neighbor);
                 if (!neighbor.walkable || closedSet.Contains(neighbor))
                 {
                     continue;
@@ -217,7 +218,7 @@ public class PathfindingScript : MonoBehaviour
 
     void MoveAlongPath(List<GridNode> path)
     {
-        Debug.Log(path);
+        // Debug.Log(path);
         if (path != null && path.Count > 0)
         {
             // Obter o próximo nó no caminho

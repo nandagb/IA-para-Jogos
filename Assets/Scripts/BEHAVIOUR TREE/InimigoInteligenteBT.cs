@@ -7,7 +7,11 @@ public class InimigoInteligenteBT : BehaviourTree
     
     protected override Node SetUpTree(){
         Node root  = new Selector(new List<Node> 
-        {
+        {   
+            new Sequence(new List<Node>{
+                new PoucaVidaNode(),
+                new RecuperarNode(),
+            }),
             new Sequence(new List<Node> 
             {
                 new CheckInimigo(),

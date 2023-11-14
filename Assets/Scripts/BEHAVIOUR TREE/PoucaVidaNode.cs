@@ -1,9 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using System;
 
-public class CheckInimigo : Node
+public class PoucaVidaNode : Node
 {
     GameObject playerObject;
     GameObject enemyObject;
@@ -13,10 +12,8 @@ public class CheckInimigo : Node
     Transform playerTransform;
     GameObject mapObject;
     Mapa map;
-    
-    public float enemyRadius=5f;
 
-    public CheckInimigo(){
+    public PoucaVidaNode(){
         playerObject = GameObject.Find("Player");
         enemyObject = GameObject.Find("InimigoInteligente");
         player = playerObject.GetComponent<Player>();
@@ -29,14 +26,26 @@ public class CheckInimigo : Node
 
     public override NodeState Evaluate(){
         state = NodeState.FAILURE;
-        
-        double diffx = Math.Pow(playerTransform.position.x - enemyTransform.position.x, 2);
-        double diffy = Math.Pow(playerTransform.position.y - enemyTransform.position.y, 2); 
-        double dist = Math.Sqrt(diffx+diffy);
 
-        if(dist <= enemyRadius){
+        if(enemy.life <= 3){
+            enemy.looking_for_potion = true;
+            Debug.Log("inimigo deve procurar por poção");
             state = NodeState.SUCCESS;
-            return state;
+        }
+        else if(enemy.life < enemy.max_life){
+            if(enemy.looking_for_potion){
+                Debug.Log("inimigo deve continuar procurando por poção");
+                state = NodeState.SUCCESS;
+            }
+            else{
+                Debug.Log("inimigo ainda pode perder vida");
+                state = NodeState.FAILURE;
+            }
+        }
+        else{
+            enemy.looking_for_potion = false;
+            Debug.Log("inimigo está com vida completa");
+            state = NodeState.FAILURE;
         }
 
         return state;

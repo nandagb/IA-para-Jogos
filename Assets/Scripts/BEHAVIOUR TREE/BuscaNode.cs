@@ -29,7 +29,8 @@ public class BuscaNode : Node
 
     }
 
-    public override NodeState Evaluate(){        
+    public override NodeState Evaluate(){
+        Debug.Log("estou no busca node");
         //buscar um inimigo
         state = NodeState.RUNNING;
         pathfindingScript.enabled = false;
