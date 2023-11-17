@@ -14,7 +14,7 @@ public class CheckInimigo : Node
     GameObject mapObject;
     Mapa map;
     
-    public float enemyRadius=5f;
+    public float enemyRadius=50f;
 
     public CheckInimigo(){
         playerObject = GameObject.Find("Player");
